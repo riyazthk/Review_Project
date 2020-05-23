@@ -28,7 +28,10 @@ function prime (){
 
    for (( i=2;$i<$a;i++ ))
    do
-      if [[ $i%2 -eq 0 ]]
+     # To check out a value whether a number is odd or even
+     # if number is odd to call odd function
+     # if number is even to call even function
+     if [[ $i%2 -eq 0 ]]
       then
          even[(k++)]=$(even $i)
          sum1=$(($sum1 + $i))
@@ -36,13 +39,18 @@ function prime (){
          odd[(j++)]=$(odd $i)
           sum=$(($sum + $i))
       fi
+      # to find out a prime value 
+      # if value from 2,3,5 it can execute prime function
       if [[ ($i -eq 2 || $i -eq 3 || $i -eq 5) ]]
       then
            prime[(l++)]=$(prime $i)
            sum3=$(($sum3 + $i))
+       # to check a value mod of 2,3,5 is equal to zero to continue a statement    
       elif [[ $i%2 -eq 0 || $i%3 -eq 0 || $i%5 -eq 0 ]]
       then
             continue
+       # to check if prime * prime = composite number so to check a number if it is composite means break it 
+       # otherwise call prime function statement 
       elif  [[ $i -gt 0 ]]
       then
           var=$(($a / 5))
@@ -61,9 +69,11 @@ function prime (){
       fi
 
    done
+# To find out a average of odd, even and prime numbers  
 averageodd=$(( $sum / $j ))
 averageeven=$(( $sum1 / $k ))
 averageprime=$(( $sum3 / $l ))
+#printing statement
 echo "print odd numbers ${odd[@]}"
 echo "average value of odd number $averageodd"
 echo "print even numbers ${even[@]}"
